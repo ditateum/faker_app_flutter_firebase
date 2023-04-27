@@ -15,6 +15,10 @@ class FirestoreRepository {
 
     debugPrint(docRef.id);
   }
+
+  Query<Map<String, dynamic>> jobsQuery() {
+    return _firestore.collection('jobs');
+  }
 }
 
 final firestoreRepositoryProvider = Provider<FirestoreRepository>((ref) {

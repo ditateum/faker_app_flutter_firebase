@@ -201,6 +201,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.2"
+  firebase_ui_firestore:
+    dependency: "direct main"
+    description:
+      name: firebase_ui_firestore
+      sha256: "5bd36c0aaefb820d7db64c9d63ff2a626de93df538e46fb430a91042ff20193c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.3.2"
   firebase_ui_localizations:
     dependency: transitive
     description:
