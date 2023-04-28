@@ -26,11 +26,14 @@ class FirestoreRepository {
   Future<void> deleteJob(String uid, String jobId) =>
       _firestore.collection('jobs').doc(jobId).delete();
 
-  Query<Job> jobsQuery() {
-    return _firestore.collection('jobs').withConverter(
+  Query<Job> jobsQuery(String uid) {
+    return _firestore
+        .collection('jobs')
+        .withConverter(
           fromFirestore: (snapshot, _) => Job.fromMap(snapshot.data()!),
           toFirestore: (job, options) => job.toMap(),
-        );
+        )
+        .where('uid', isEqualTo: uid);
   }
 }
 
