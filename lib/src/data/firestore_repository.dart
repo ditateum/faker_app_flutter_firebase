@@ -10,6 +10,7 @@ class FirestoreRepository {
       _firestore.collection('users/$uid/jobs').add({
         'title': title,
         'company': company,
+        'createdAt': FieldValue.serverTimestamp(),
       });
 
   /// doc('jobs/$jobId') same with collection('jobs').doc(jobId)
@@ -26,10 +27,13 @@ class FirestoreRepository {
       _firestore.doc('users/$uid/jobs/$jobId').delete();
 
   Query<Job> jobsQuery(String uid) {
-    return _firestore.collection('users/$uid/jobs').withConverter(
+    return _firestore
+        .collection('users/$uid/jobs')
+        .withConverter(
           fromFirestore: (snapshot, _) => Job.fromMap(snapshot.data()!),
           toFirestore: (job, options) => job.toMap(),
-        );
+        )
+        .orderBy('createdAt', descending: true);
   }
 }
 
